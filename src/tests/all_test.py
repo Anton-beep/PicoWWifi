@@ -9,10 +9,19 @@ def run_test_in_dir(dir: str):
 
         if type == 0x8000 and name.split(".")[-1] == "py" and name[:5] == "test_":
             print("running test " + dir + "/" + name)
-            exec(open(dir + "/" + name).read())
+
+            try:
+                exec(open(dir + "/" + name).read())
+            except Exception as ex:
+                print("FAIL: " + str(ex))
+                continue
+
+            print("PASS")
 
 
 if __name__ == "__main__":
     print("+++start testing+++")
+    os.chdir("src")
     run_test_in_dir(".")
+    os.chdir("..")
     print("+++end testing+++")

@@ -1,5 +1,6 @@
-import network
 import time
+
+import network
 
 from Logger.Logger import Logger
 
@@ -17,8 +18,7 @@ class Wlan:
     def connect_to_wifi(self) -> bool:
         self.wlan.connect(self.ssid, self.password)
         for elapsed in range(Wlan.MAX_TIMEOUT_CONNECT):
-            Logger.info(network.STAT_NO_AP_FOUND)
-            Logger.info(f"trying to connect to wifi, status: {self.wlan.status()}")
+            Logger.info(f"trying to connect to wifi")
             if self.wlan.isconnected():
                 break
 

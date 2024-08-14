@@ -3,7 +3,7 @@ class ConfigReader:
         with open(path) as f:
             for line in f.readlines():
                 key, val = line.split("=")
-                setattr(self, key, val.rstrip())
+                setattr(self, key, val.rstrip().lstrip())
 
     def __getitem__(self, key: str):
         return getattr(self, key)
